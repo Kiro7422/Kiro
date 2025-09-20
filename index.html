@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kamel Kolta | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* Text-Gradient Animation */
+    .gradient-text {
+      background: linear-gradient(270deg, #3b82f6, #9333ea, #1e3a8a);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 8s ease infinite;
+      position: relative;
+      display: inline-block;
+    }
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Card Hover Animation */
+    .project-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    /* Video Wrapper mit Thumbnail und Play-Button */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .video-wrapper img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+      transition: opacity 0.4s ease;
+    }
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-wrapper.playing img {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Play-Button Overlay */
+    .video-wrapper .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      width: 60px;
+      height: 60px;
+      background-color: rgba(0,0,0,0.7);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .video-wrapper .play-button:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .video-wrapper .play-button::after {
+      content: '';
+      border-style: solid;
+      border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent white;
+    }
+    .video-wrapper.playing .play-button {
+      display: none;
+    }
+
+    /* Social Icons */
+    .social-icon {
+      display: inline-block;
+      margin: 0 8px;
+      color: #9ca3af;
+      transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
+      cursor: pointer;
+    }
+    .social-icon:hover {
+      transform: scale(1.3);
+      color: #f472b6;
+      text-shadow: 0 0 8px #f472b6;
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-gray-200 relative overflow-x-hidden">
+
+  <!-- Header -->
+  <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-blue-400">Kamel Kolta</h1>
+      <nav class="space-x-6">
+        <a href="#projects" class="hover:text-blue-400 transition">Projekte</a>
+        <a href="#resume" class="hover:text-blue-400 transition">Lebenslauf</a>
+        <a href="#contact" class="hover:text-blue-400 transition">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
+    <canvas id="bgCanvas"></canvas>
+    <h2 class="text-5xl font-extrabold mb-4 gradient-text relative z-20" data-aos="fade-up">
+      Willkommen
+    </h2>
+    <p class="text-lg max-w-xl text-gray-300 relative z-10" data-aos="fade-up" data-aos-delay="200">
+      <span class="text-blue-400 font-semibold">Kamel Kolta</span>, leidenschaftlicher Informatiker & Entwickler.  
+      Hier findest du meine spannendsten Projekte.
+    </p>
+    <a href="#projects" 
+       class="mt-6 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-110 transition-transform relative z-10"
+       data-aos="zoom-in" data-aos-delay="400">
+      Projekte entdecken 
+    </a>
+  </section>
+
+  <!-- Projekte Section -->
+  <section id="projects" class="container mx-auto py-16 relative z-10">
+    <h3 class="text-3xl font-bold text-center mb-12 text-blue-400">Meine Projekte</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Projekt 1 -->
+      <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden project-card" data-aos="flip-left">
+        <div class="video-wrapper">
+          <img src="Thumbnails/thumb1.png" alt="Projekt 1 Thumbnail">
+          <div class="play-button"></div>
+          <video>
+            <source src="ProjectVideos/project1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="p-4">
+          <h4 class="text-xl font-semibold text-white mb-2">💉 Praxis-Counter App</h4>
+          <p class="text-gray-400 text-sm mb-2">
+            Eine smarte Lösung für Arztpraxen, die Patienten digital erfasst und Wartezeiten reduziert. Leichte Krankheiten wie Husten oder Bauchschmerzen werden effizient verwaltet, mit automatischen Medikamenten-Empfehlungen und Möglichkeit zur Terminbuchung.
+          </p>
+          <ul class="text-gray-400 text-sm space-y-1">
+            <li>✅ Digitale Patientenregistrierung bei leichten Erkrankungen</li>
+            <li>✅ Medikamentenempfehlung vom Arzt direkt im System</li>
+            <li>✅ Terminbuchung für Folgebesuche einfach möglich</li>
+            <li>✅ Automatisches Löschen der Daten für DSGVO-Konformität</li>
+            <li>💡 Vorteil: Effizientere Praxisabläufe & kürzere Wartezeiten</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projekt 2 -->
+      <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden project-card" data-aos="flip-right">
+        <div class="video-wrapper">
+          <img src="Thumbnails/thumb2.png" alt="Projekt 2 Thumbnail">
+          <div class="play-button"></div>
+          <video>
+            <source src="ProjectVideos/project2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="p-4">
+          <h4 class="text-xl font-semibold text-white mb-2">🌐 Smart Project Manager</h4>
+          <p class="text-gray-400 text-sm mb-2">
+            Ein leistungsstarkes Tool für Aufgaben- und Ressourcenmanagement. Aufgaben werden priorisiert, Ressourcen effizient zugewiesen, Engpässe sichtbar gemacht und Deadlines leichter eingehalten.
+          </p>
+          <ul class="text-gray-400 text-sm space-y-1">
+            <li>✅ Aufgabenverwaltung mit Name, Priorität & Deadline</li>
+            <li>✅ Ressourcenmanagement (Mitarbeiter, Maschinen, Räume)</li>
+            <li>✅ Automatische Optimierung & Zuweisung von Aufgaben</li>
+            <li>✅ Speichern & Laden kompletter Projekte für wiederholbare Workflows</li>
+            <li>💡 Vorteil: Effiziente Teamplanung & reduzierte Deadlines-Risiken</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projekt 3 -->
+      <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden project-card" data-aos="flip-up">
+        <div class="video-wrapper">
+          <img src="Thumbnails/thumb3.png" alt="Projekt 3 Thumbnail">
+          <div class="play-button"></div>
+          <video>
+            <source src="ProjectVideos/project3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="p-4">
+          <h4 class="text-xl font-semibold text-white mb-2">🎮 Dungeon Adventure 2D</h4>
+          <p class="text-gray-400 text-sm mb-2">
+            Ein Java 2D-Actionspiel mit GUI. Spieler bewegen sich per Pfeiltasten, schießen mit SPACE und kämpfen gegen aufeinanderfolgende Gegner. HP-System, Heiltränke und Neustart-Button sorgen für dynamisches Gameplay.
+          </p>
+          <ul class="text-gray-400 text-sm space-y-1">
+            <li>✅ Spieler steuert Charakter & feuert Projektile ab</li>
+            <li>✅ Gegner erscheinen nacheinander & greifen an</li>
+            <li>✅ Belohnung: Heiltrank nach besiegtem Gegner</li>
+            <li>✅ Neustart-Button für schnelle neue Runde</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lebenslauf Section -->
+  <section id="resume" class="bg-gray-800 text-white py-16 relative z-10">
+    <div class="container mx-auto text-center">
+      <h3 class="text-3xl font-bold mb-6 text-blue-400">Lebenslauf</h3>
+      <p class="mb-6 text-gray-300">Klicke auf den Button, um meinen Lebenslauf als PDF herunterzuladen.</p>
+      <a href="LebenslaufKamel2025.pdf" 
+         download 
+         class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-110 transition-transform inline-block">
+        📄 Lebenslauf herunterladen
+      </a>
+    </div>
+  </section>
+
+  <!-- Kontakt Section -->
+ <section id="contact" class="bg-gray-900 text-white py-16 relative z-10">
+  <div class="container mx-auto text-center">
+    <h3 class="text-3xl font-bold mb-6 text-blue-400">Kontakt</h3>
+    <p class="mb-2">📧 <a href="mailto:kirokolta@yahoo.com" class="underline hover:text-blue-400 transition">kirokolta@yahoo.com</a></p>
+    <p>📞 <a href="tel:+4915734966434" class="underline hover:text-blue-400 transition">+49 1573 4966434</a></p>
+    
+    <!-- Social Icons direkt im Kontaktbereich -->
+    <div class="mt-4">
+      <a href="https://github.com/Kiro7422" target="_blank" class="social-icon">🐱</a>
+      <a href="https://linkedin.com/in/deinLinkedIn" target="_blank" class="social-icon">in</a>
+      <a href="https://www.instagram.com/kirooo_74/" target="_blank" class="social-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5A4.25 4.25 0 0020.5 16.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1.5a4 4 0 100 8 4 4 0 000-8zm5.25-.75a1 1 0 110 2 1 1 0 010-2z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+  <!-- Animation Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200, once: true });
+  </script>
+
+  <!-- Three.js Hintergrund -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script>
+    const canvas = document.getElementById('bgCanvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambientLight);
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(5,5,5);
+    scene.add(pointLight);
+
+    const geometries = [
+      new THREE.BoxGeometry(1.5,1.5,1.5),
+      new THREE.SphereGeometry(1,32,32),
+      new THREE.TetrahedronGeometry(1.2)
+    ];
+    const materials = [
+      new THREE.MeshStandardMaterial({ color: 0x3b82f6, metalness: 0.5, roughness: 0.2 }),
+      new THREE.MeshStandardMaterial({ color: 0x9333ea, metalness: 0.5, roughness: 0.2 }),
+      new THREE.MeshStandardMaterial({ color: 0x1e3a8a, metalness: 0.5, roughness: 0.2 })
+    ];
+
+    const objects = [];
+    for(let i=0;i<3;i++){
+      const mesh = new THREE.Mesh(geometries[i], materials[i]);
+      mesh.position.set((i-1)*3, 0, 0);
+      scene.add(mesh);
+      objects.push(mesh);
+    }
+    camera.position.z = 7;
+
+    const particlesCount = 300;
+    const particles = new THREE.BufferGeometry();
+    const positions = [];
+    for(let i=0;i<particlesCount*3;i++){
+      positions.push((Math.random()-0.5)*30, (Math.random()-0.5)*30, (Math.random()-0.5)*30);
+    }
+    particles.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
+    const particleMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, opacity:0.5, transparent:true });
+    const particleSystem = new THREE.Points(particles, particleMaterial);
+    scene.add(particleSystem);
+
+    function animate(){
+      requestAnimationFrame(animate);
+      objects.forEach(obj=>{ obj.rotation.x += 0.01; obj.rotation.y += 0.01; });
+      particleSystem.rotation.y += 0.001;
+      particleSystem.rotation.x += 0.0005;
+      renderer.render(scene,camera);
+    }
+    animate();
+
+    window.addEventListener('resize', ()=>{ 
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+
+  <!-- Video Thumbnails Script -->
+  <script>
+    document.querySelectorAll(".video-wrapper").forEach(wrapper => {
+      const video = wrapper.querySelector("video");
+      wrapper.addEventListener("click", () => {
+        wrapper.classList.add("playing");
+        video.play();
+      });
+      video.addEventListener("pause", () => { 
+        wrapper.classList.remove("playing"); 
+      });
+    });
+  </script>
+
+</body>
+</html>
